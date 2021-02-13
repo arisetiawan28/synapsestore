@@ -16,6 +16,11 @@ class HomeController extends Controller
         //
     }
 
+    public function halo()
+    {
+        return view('home.halo');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
