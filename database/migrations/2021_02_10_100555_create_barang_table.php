@@ -16,11 +16,13 @@ class CreateBarangTable extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
 
-            $table->string ("kodeBarang");
-            $table->string ("namaBarang");
-            $table->float ("hargaBarang");
-            $table->string ("deskripsiBarang");
-            $table->integer ("jumlahBarang");
+            $table->string ("kode_barang");
+            $table->string ("nama_barang");
+            $table->decimal ("harga_barang",9,2);
+            $table->text ("deskripsi_barang");
+            $table->integer ("jumlah_barang");
+            $table->integer ("created_by");
+            $table->integer ("updated_by");
             
 
             $table->timestamps();

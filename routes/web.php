@@ -17,5 +17,3 @@ use App\Http\Controllers\BarangController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::resource('barang', PhotoController::class, 'barang');
