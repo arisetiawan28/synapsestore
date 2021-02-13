@@ -13,7 +13,10 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Barang::all();
+        return view('barang.index', compact(
+            'datas'
+        ));
     }
 
     /**
@@ -23,7 +26,10 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Barang;
+        return view('barang.create', compact(
+            'model'
+        ));
     }
 
     /**
@@ -34,7 +40,17 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model= new Barang;
+        $model->kode_barang =$request->get('kode_barang');
+        $model->nama =$request->get('nama');
+        $model->harga =$request->get('harga');
+        $model->deskripsi =$request->get('deskripsi');
+        $model->jumlah =$request->get('jumlah');
+        $model->created_by = 1;
+        $model->updated_by = 1;
+        $model->save();
+
+        return redirect('barang')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
