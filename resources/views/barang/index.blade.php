@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layout.index')
 
 @section('title')
 Daftar Barang
@@ -21,9 +21,9 @@ Daftar Barang
             @foreach($datas as $value)
                 <tr>
                     <td>{{ $value->kode_barang }}</td>
-                    <td>{{ $value->nama }}</td>
-                    <td>{{ $value->harga }}</td>
-                    <td>{{ $value->jumlah }}</td>
+                    <td>{{ $value->nama_barang }}</td>
+                    <td>{{ $value->harga_barang }}</td>
+                    <td>{{ $value->jumlah_barang }}</td>
                 </tr>
             @endforeach()
         </table>

@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layout.index')
 
 
 @section('title')
@@ -9,7 +9,7 @@ Tambah Barang
     <div class="col-sm-12">
         <form method="post" action="{{ url('barang') }}" enctype="multipart/form-data">
         @csrf
-        @include('barang.form')
+        @include('barang._form')
         </form>
     </div>
 @endsection

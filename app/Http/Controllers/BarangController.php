@@ -43,10 +43,10 @@ class BarangController extends Controller
     {
         $model= new Barang;
         $model->kode_barang =$request->get('kode_barang');
-        $model->nama =$request->get('nama');
-        $model->harga =$request->get('harga');
-        $model->deskripsi =$request->get('deskripsi');
-        $model->jumlah =$request->get('jumlah');
+        $model->nama_barang =$request->get('nama_barang');
+        $model->harga_barang =$request->get('harga_barang');
+        $model->deskripsi_barang =$request->get('deskripsi_barang');
+        $model->jumlah_barang =$request->get('jumlah_barang');
         $model->created_by = 1;
         $model->updated_by = 1;
         $model->save();
