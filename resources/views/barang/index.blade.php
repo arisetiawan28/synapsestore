@@ -13,10 +13,10 @@ Daftar Barang
     <div class="col-sm-12">
         <table class="table table-bordered">
             <tr>
-                <th>Kode Barang</th>
-                <th>Nama</th>
-                <th>Harga</th>
-                <th>Jumlah</th>
+                <th>{{ $model->attributes()['kode_barang'] }}</th>
+                <th>{{ $model->attributes()['nama_barang'] }}</th>
+                <th>{{ $model->attributes()['harga_barang'] }}</th>
+                <th>{{ $model->attributes()['jumlah_barang'] }}</th>
                 <td class="text-center"><a class="btn btn-primary" href="{{ url('barang/'.$value->id.'/edit/') }}">Update</a></td>
                     <td class="text-center">
                         <form action="{{ url('barang/'.$value['id']) }}" method="post">

@@ -16,7 +16,7 @@ class BarangController extends Controller
     {
         $datas = Barang::all();
         return view('barang.index', compact(
-            'datas'
+            'datas', 'model'
         ));
     }
 
