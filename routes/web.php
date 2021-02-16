@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::get('/home/halo', [HomeController::class, 'halo']);
 Route::resource('barang', BarangController::class);
 // Route::get('/barang/create', [BarangController::class, 'create']); 
 Route::resource('kategori', KategoriController::class);
+Route::resource('keranjang', KeranjangController::class);

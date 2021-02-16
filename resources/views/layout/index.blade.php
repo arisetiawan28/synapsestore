@@ -177,11 +177,31 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
+            <a href="{{ url('barang') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                Barang
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('kategori') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Kategori
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('keranjang') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Keranjang
+                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
