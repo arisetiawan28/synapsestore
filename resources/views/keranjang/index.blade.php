@@ -21,7 +21,7 @@ Keranjang
             </tr>
             @foreach($datas as $value)
                 <tr>
-                    <td>{{ $value->barang_id }}</td>
+                    <td>{{ $value->barang->nama_barang }}</td>
                     <td>{{ $value->customer_id }}</td>
                     <td>{{ $value->jumlah_pesanan }}</td>
                     <td>{{ $value->jumlah_harga }}</td>

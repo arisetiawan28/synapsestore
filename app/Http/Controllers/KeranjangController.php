@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Keranjang;
+use App\Http\Requests\KeranjangRequest;
 
 class KeranjangController extends Controller
 {
@@ -42,13 +43,15 @@ class KeranjangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KeranjangRequest $request)
     {
         $model = new Keranjang;
         $model->barang_id = $request->get('barang_id');
         $model->customer_id = $request->get('customer_id');
         $model->jumlah_pesanan = $request->get('jumlah_pesanan');
-        $model->jumlah_harga = $request->get('jumlah_harga');
+        $barang = Barang::find($model->barang_id);
+        $total_harga = $barang->harga_barang * $model->jumlah_pesanan;
+        $model->jumlah_harga = $total_harga;
         $model->created_by = 1;
         $model->updated_by = 1;
         $model->save();
@@ -89,13 +92,15 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(KeranjangRequest $request, $id)
     {
         $model = Keranjang::find($id);
         $model->barang_id = $request->get('barang_id');
         $model->customer_id = $request->get('customer_id');
         $model->jumlah_pesanan = $request->get('jumlah_pesanan');
-        $model->jumlah_harga = $request->get('jumlah_harga');
+        $barang = Barang::find($model->barang_id);
+        $total_harga = $barang->harga_barang * $model->jumlah_pesanan;
+        $model->jumlah_harga = $total_harga;
         $model->created_by = 1;
         $model->updated_by = 1;
         $model->save();

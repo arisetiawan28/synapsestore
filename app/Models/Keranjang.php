@@ -11,6 +11,11 @@ class Keranjang extends Model
 
     protected $table = "keranjang";
 
+    public function barang()
+    {
+        return $this->hasOne(Barang::class, 'id', 'barang_id');
+    }
+
     public function attributes()
     {
         return [
