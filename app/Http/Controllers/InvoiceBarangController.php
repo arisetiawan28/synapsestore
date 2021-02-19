@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kategori;
+use App\Models\InvoiceBarang;
 
-class KategoriController extends Controller
+class InvoiceBarangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $model = new Kategori;
-        $datas = Kategori::all();
-        return view('kategori.index', compact(
+        $model = new InvoiceBarang;
+        $datas = InvoiceBarang::all();
+        return view('invoice_barang.index', compact(
             'datas', 'model'
         ));
     }
@@ -28,9 +28,9 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        $model = new Kategori;
-        return view('kategori.create', compact(
-            'model'
+        $datas = InvoiceBarang::all();
+        return view('invoice_barang.create', compact(
+            'datas'
         ));
     }
 
@@ -42,15 +42,17 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $model= new Kategori;
-        $model->nama =$request->get('nama');
-        $model->deskripsi =$request->get('deskripsi');
-        $model->induk_kategori =$request->get('induk_kategori');
+        $model= new InvoiceBarang;
+        $model->transaksi_id =$request->get('transaksi_id');
+        $model->barang_id =$request->get('barang_id');
+        $model->customer_id =$request->get('customer_id');
+        $model->jumlah_barang =$request->get('jumlah_barang');
+        $model->jumlah_harga =$request->get('jumlah_harga');
         $model->created_by = 1;
         $model->updated_by = 1;
         $model->save();
 
-        return redirect('kategori')->with('success', 'Data berhasil ditambahkan');
+        return redirect('invoice_barang')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -72,8 +74,8 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        $model = Kategori::find($id); //SELECT * FROM barang WHERE id=...
-        return view('kategori.edit', compact(
+        $model = InvoiceBarang::find($id); //SELECT * FROM barang WHERE id=...
+        return view('invoice_barang.edit', compact(
             'model'
         ));
     }
@@ -87,15 +89,17 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model= Kategori::find($id);
-        $model->nama =$request->get('nama');
-        $model->deskripsi =$request->get('deskripsi');
-        $model->induk_kategori =$request->get('induk_kategori');
+        $model= InvoiceBarang::find($id);
+        $model->transaksi_id =$request->get('transaksi_id');
+        $model->barang_id =$request->get('barang_id');
+        $model->customer_id =$request->get('customer_id');
+        $model->jumlah_barang =$request->get('jumlah_barang');
+        $model->jumlah_harga =$request->get('jumlah_harga');
         $model->created_by = 1;
         $model->updated_by = 1;
         $model->save();
 
-        return redirect('kategori')->with('success', 'Data berhasil ditambahkan');
+        return redirect('invoice_barang')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -106,8 +110,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $model = Barang::find($id);
+        $model = InvoiceBarang::find($id);
             $model->delete();
-            return redirect('barang');
+            return redirect('invoice_barang');
     }
 }

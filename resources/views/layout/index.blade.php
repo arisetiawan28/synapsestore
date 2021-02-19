@@ -205,6 +205,36 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{ url('invoice_barang') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Invoice Barang
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('invoice_history') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Invoice History
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Message Chat
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

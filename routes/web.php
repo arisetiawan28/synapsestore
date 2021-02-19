@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\InvoiceBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,5 @@ Route::resource('barang', BarangController::class);
 // Route::get('/barang/create', [BarangController::class, 'create']); 
 Route::resource('kategori', KategoriController::class);
 Route::resource('keranjang', KeranjangController::class);
+Route::resource('invoice_barang', InvoiceBarangController::class);
+Route::resource('invoice', InvoiceController::class);

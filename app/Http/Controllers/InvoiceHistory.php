@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kategori;
 
-class KategoriController extends Controller
+class InvoiceHistory extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $model = new Kategori;
-        $datas = Kategori::all();
-        return view('kategori.index', compact(
-            'datas', 'model'
-        ));
+        //
     }
 
     /**
@@ -28,10 +23,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        $model = new Kategori;
-        return view('kategori.create', compact(
-            'model'
-        ));
+        //
     }
 
     /**
@@ -42,15 +34,7 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $model= new Kategori;
-        $model->nama =$request->get('nama');
-        $model->deskripsi =$request->get('deskripsi');
-        $model->induk_kategori =$request->get('induk_kategori');
-        $model->created_by = 1;
-        $model->updated_by = 1;
-        $model->save();
-
-        return redirect('kategori')->with('success', 'Data berhasil ditambahkan');
+        //
     }
 
     /**
@@ -72,10 +56,7 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        $model = Kategori::find($id); //SELECT * FROM barang WHERE id=...
-        return view('kategori.edit', compact(
-            'model'
-        ));
+        //
     }
 
     /**
@@ -87,15 +68,7 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model= Kategori::find($id);
-        $model->nama =$request->get('nama');
-        $model->deskripsi =$request->get('deskripsi');
-        $model->induk_kategori =$request->get('induk_kategori');
-        $model->created_by = 1;
-        $model->updated_by = 1;
-        $model->save();
-
-        return redirect('kategori')->with('success', 'Data berhasil ditambahkan');
+        //
     }
 
     /**
@@ -106,8 +79,6 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $model = Barang::find($id);
-            $model->delete();
-            return redirect('barang');
+        //
     }
 }
