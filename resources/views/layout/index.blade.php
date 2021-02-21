@@ -184,15 +184,14 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{ url('barang') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Barang
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+          @hasanyrole('superadmin')
+            <li class="nav-item">
+              <a href="{{ url('kategori') }}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>Kategori</p>
+              </a>
+            </li>
+          @endhasanyrole
 
           <li class="nav-item">
             <a href="{{ url('kategori') }}" class="nav-link">
@@ -265,7 +264,7 @@
             </li>
           @endif
           <!-- logout -->
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
