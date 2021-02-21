@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Http\Requests\BarangRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -49,8 +50,8 @@ class BarangController extends Controller
         $model->harga_barang =$request->get('harga_barang');
         $model->deskripsi_barang =$request->get('deskripsi_barang');
         $model->jumlah_barang =$request->get('jumlah_barang');
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('barang')->with('success', 'Data berhasil ditambahkan');

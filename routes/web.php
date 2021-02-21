@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceBarangController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,11 @@ Route::resource('kategori', KategoriController::class);
 Route::resource('keranjang', KeranjangController::class);
 Route::resource('invoice_barang', InvoiceBarangController::class);
 Route::resource('invoice', InvoiceController::class);
+Route::resource('message', MessageController::class);
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource('barang', BarangController::class);
+    Route::resource('kategori', KategoriController::class);
+    Route::resource('message', MessageController::class);
+});
+
