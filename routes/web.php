@@ -25,8 +25,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home/halo', [HomeController::class, 'halo']);
-Route::resource('barang', BarangController::class);
-// Route::get('/barang/create', [BarangController::class, 'create']); 
+// Route::resource('barang', BarangController::class);
+Route::get('/barang/create', [BarangController::class, 'create']); 
 Route::resource('kategori', KategoriController::class);
 Route::resource('keranjang', KeranjangController::class);
 Route::resource('invoice_barang', InvoiceBarangController::class);
@@ -39,3 +39,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('message', MessageController::class);
 });
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
