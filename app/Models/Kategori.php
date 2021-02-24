@@ -16,8 +16,8 @@ class Kategori extends Model
             'nama' => 'Kategori',
             'deskripsi' => 'Deskripsi',
             'induk_kategori' => 'Induk Kategori',
-            'created_at' => 'Dibuat oleh',
-            'updated_at' => 'Diperbaharui oleh',
+            'created_by' => 'Dibuat oleh',
+            'updated_by' => 'Diperbaharui oleh',
         ];
     }
 }

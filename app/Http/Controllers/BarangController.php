@@ -14,12 +14,23 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $model = new Barang;
-        $datas = Barang::all();
+        // $datas = Barang::all();
+
+        //untuk menangkap isian kata kunci pencarian
+        $keyword = $request->get('search');
+
+        $datas = Barang::where('kode_barang', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('nama_barang', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('deskripsi_barang', 'LIKE', '%' . $keyword . '%')
+            ->paginate();
+
+        $datas->withPath('barang');
+        $datas->appends($request->all());
         return view('barang.index', compact(
-            'datas', 'model'
+            'datas', 'model', 'keyword'
         ));
     }
 

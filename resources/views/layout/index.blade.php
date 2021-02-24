@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="{{ asset('theme/adminlte') }}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('theme/adminlte') }}/dist/css/adminlte.min.css">
+  <!-- tambahan code untk css -->
+  @yield('css')
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -184,14 +186,24 @@
               </li>
             </ul>
           </li>
-          @hasanyrole('superadmin')
+
+          <li class="nav-item">
+            <a href="{{ url('barang') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Barang
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <!-- @hasanyrole('superadmin') -->
             <li class="nav-item">
               <a href="{{ url('kategori') }}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Kategori</p>
               </a>
             </li>
-          @endhasanyrole
+          <!-- @endhasanyrole -->
 
           <li class="nav-item">
             <a href="{{ url('kategori') }}" class="nav-link">
@@ -238,6 +250,26 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Message Chat
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('role') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Role
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('user_role') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Role User
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
@@ -318,5 +350,7 @@
 <script src="{{ asset('theme/adminlte') }}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('theme/adminlte') }}/dist/js/demo.js"></script>
+<!-- tambahan code utk js -->
+@yield('script')
 </body>
 </html

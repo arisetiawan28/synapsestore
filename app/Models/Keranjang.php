@@ -23,8 +23,8 @@ class Keranjang extends Model
             'customer_id' => 'Customer',
             'jumlah_pesanan' => 'Jumlah Pesanan',
             'jumlah_harga' => 'Jumlah Harga',
-            'created_at' => 'Dibuat oleh',
-            'updated_at' => 'Diperbaharui oleh',
+            'created_by' => 'Dibuat oleh',
+            'updated_by' => 'Diperbaharui oleh',
         ];
     }
 }

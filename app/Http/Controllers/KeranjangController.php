@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Keranjang;
 use App\Http\Requests\KeranjangRequest;
+use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
 {
@@ -17,9 +18,18 @@ class KeranjangController extends Controller
     public function index()
     {
         $model = new Keranjang;
-        $datas = Keranjang::all();
+        // $datas = Keranjang::all();
+        //untuk menangkap isian kata kunci pencarian
+        $keyword = $request->get('search');
+
+        $datas = Keranjang::where('jumlah_pesanan', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('jumlah_harga', 'LIKE', '%' . $keyword . '%')
+            ->paginate();
+
+        $datas->withPath('keranjang');
+        $datas->appends($request->all());
         return view('keranjang.index', compact(
-            'datas', 'model'
+            'datas', 'model', 'keyword'
         ));
     }
 
@@ -52,8 +62,8 @@ class KeranjangController extends Controller
         $barang = Barang::find($model->barang_id);
         $total_harga = $barang->harga_barang * $model->jumlah_pesanan;
         $model->jumlah_harga = $total_harga;
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('keranjang');
