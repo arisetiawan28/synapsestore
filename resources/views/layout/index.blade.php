@@ -169,6 +169,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          
+        @if(auth()->check())
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -186,7 +188,7 @@
               </li>
             </ul>
           </li>
-
+          @hasanyrole('superadmin')
           <li class="nav-item">
             <a href="{{ url('barang') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -196,13 +198,14 @@
               </p>
             </a>
           </li>
+          @endhasanyrole
           <!-- @hasanyrole('superadmin') -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="{{ url('kategori') }}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Kategori</p>
               </a>
-            </li>
+            </li> -->
           <!-- @endhasanyrole -->
 
           <li class="nav-item">
@@ -246,7 +249,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="{{ url('') }}" class="nav-link">
+            <a href="{{ url('message') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Message Chat
@@ -254,7 +257,8 @@
               </p>
             </a>
           </li>
-
+          
+          @hasanyrole('superadmin')
           <li class="nav-item">
             <a href="{{ url('role') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -264,7 +268,9 @@
               </p>
             </a>
           </li>
+          @endhasanyrole
 
+          @hasanyrole('superadmin')
           <li class="nav-item">
             <a href="{{ url('user_role') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -274,6 +280,20 @@
               </p>
             </a>
           </li>
+          @endhasanyrole
+
+          @hasanyrole('superadmin')
+          <li class="nav-item">
+            <a href="{{ url('permission') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Permission
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          @endhasanyrole
+        @endif
 
           <!-- logout -->
           @if(auth()->check())

@@ -15,7 +15,7 @@ class KeranjangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $model = new Keranjang;
         // $datas = Keranjang::all();
@@ -111,8 +111,8 @@ class KeranjangController extends Controller
         $barang = Barang::find($model->barang_id);
         $total_harga = $barang->harga_barang * $model->jumlah_pesanan;
         $model->jumlah_harga = $total_harga;
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('keranjang');

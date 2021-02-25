@@ -23,8 +23,8 @@ class Invoice extends Model
             'id_keranjang' => 'Keranjang',
             'waktu_sampai' => 'Waktu Sampai',
             'customer_id' => 'Customer',
-            'created_at' => 'Dibuat oleh',
-            'updated_at' => 'Diperbaharui oleh',
+            'created_by' => 'Dibuat oleh',
+            'updated_by' => 'Diperbaharui oleh',
         ];
     }
 
@@ -35,5 +35,11 @@ class Invoice extends Model
             3 => 'Transfer Bank',
             4 => 'dll',
         ];
+    }
+
+    //relasi yang menghubungkan dengan user yang melakukan input
+    public function createdBy()
+    {
+        return $this->hasOne(User::class, 'id', 'created_by');
     }
 }

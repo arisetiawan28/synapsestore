@@ -27,4 +27,9 @@ class Keranjang extends Model
             'updated_by' => 'Diperbaharui oleh',
         ];
     }
+    //relasi yang menghubungkan dengan user yang melakukan input
+    public function createdBy()
+    {
+        return $this->hasOne(User::class, 'id', 'created_by');
+    }
 }

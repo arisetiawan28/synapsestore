@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Http\Requests\MessageRequest;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -13,12 +14,21 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $model = new Message;
-        $datas = Message::all();
+        // $datas = Message::all();
+        //untuk menangkap isian kata kunci pencarian
+        $keyword = $request->get('search');
+
+        $datas = Message::where('isi_chat', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('chat_status', 'LIKE', '%' . $keyword . '%')
+            ->paginate();
+
+        $datas->withPath('message');
+        $datas->appends($request->all());
         return view('message.index', compact(
-            'datas', 'model'
+            'datas', 'model', 'keyword'
         ));
     }
 
@@ -49,8 +59,8 @@ class MessageController extends Controller
         $model->tanggal_waktu =$request->get('tanggal').' '.$request->get('jam');
         $model->chat_previous =$request->get('chat_previous');
         $model->chat_status =$request->get('chat_status');
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('message')->with('success', 'Data berhasil ditambahkan');
@@ -96,8 +106,8 @@ class MessageController extends Controller
         $model->tanggal_waktu =$request->get('tanggal').' '.$request->get('jam');
         $model->chat_previous =$request->get('chat_previous');
         $model->chat_status =$request->get('chat_status');
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('message')->with('success', 'Data berhasil ditambahkan');

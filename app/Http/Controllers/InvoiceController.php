@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Http\Requests\InvoiceRequest;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
@@ -13,12 +14,21 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $model = new Invoice;
-        $datas = Invoice::all();
+        // $datas = Invoice::all();
+        //untuk menangkap isian kata kunci pencarian
+        $keyword = $request->get('search');
+
+        $datas = Invoice::where('kode_transaksi', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('jumlah_transaksi', 'LIKE', '%' . $keyword . '%')
+            ->paginate();
+
+        $datas->withPath('message');
+        $datas->appends($request->all());
         return view('invoice.index', compact(
-            'datas', 'model'
+            'datas', 'model', 'keyword'
         ));
     }
 
@@ -53,8 +63,8 @@ class InvoiceController extends Controller
         $model->id_keranjang =$request->get('id_keranjang');
         $model->waktu_sampai =$request->get('waktu_sampai');
         $model->customer_id =$request->get('customer_id');
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('invoice')->with('success', 'Data berhasil ditambahkan');
@@ -104,8 +114,8 @@ class InvoiceController extends Controller
         $model->id_keranjang =$request->get('id_keranjang');
         $model->waktu_sampai =$request->get('waktu_sampai');
         $model->customer_id =$request->get('customer_id');
-        $model->created_by = 1;
-        $model->updated_by = 1;
+        $model->created_by = Auth::id();
+        $model->updated_by = Auth::id();
         $model->save();
 
         return redirect('invoice')->with('success', 'Data berhasil ditambahkan');

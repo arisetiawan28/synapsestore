@@ -29,28 +29,38 @@ Route::get('/', function () {
 
 Route::get('/home/halo', [HomeController::class, 'halo']);
 // Route::resource('barang', BarangController::class);
-Route::get('/barang/create', [BarangController::class, 'create']); 
-Route::resource('kategori', KategoriController::class);
-Route::resource('keranjang', KeranjangController::class);
-Route::resource('invoice_barang', InvoiceBarangController::class);
-Route::resource('invoice', InvoiceController::class);
-Route::resource('message', MessageController::class);
+// Route::get('/barang/create', [BarangController::class, 'create']); 
+// Route::resource('kategori', KategoriController::class);
+// Route::resource('keranjang', KeranjangController::class);
+// Route::resource('invoice_barang', InvoiceBarangController::class);
+// Route::resource('invoice', InvoiceController::class);
+// Route::resource('message', MessageController::class);
 
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('barang', BarangController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('message', MessageController::class);
+    Route::resource('invoice', InvoiceController::class);
+    Route::resource('invoice_barang', InvoiceBarangController::class);
+    Route::resource('keranjang', KeranjangController::class);
 });
 
-// ROUTE untuk pengaturan ROLE, PERMISSION dan USER ROLE
-Route::resource('permission',PermissionController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
-Route::resource('role',RoleController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
-Route::resource('user_role',UserRoleController::class)->except(['show', 'create', 'store', 'destroy']);
+//hanya bisa diakses oleh user dengan level superadmin atau pedagang
+Route::group(['middleware' => ['role:superadmin|pedagang']], function () {   
+    Route::resource('barang', BarangController::class);
+}); 
 
 //yang bisa mengakses routes di bawah hanya user yang telah login dan memiliki tipe superadmin
-Route::group(['middleware' => ['role:superadmin']], function () {    
-// Route::resource('kategori', KategoriController::class);
+Route::group(['middleware' => ['role:superadmin']], function () {
+    Route::resource('permission',PermissionController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
+    Route::resource('role',RoleController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
+    Route::resource('user_role',UserRoleController::class)->except(['show', 'create', 'store', 'destroy']);
+    Route::resource('barang', BarangController::class);
+
+    //ini adalah function menghapus message, yang hanya bisa diakses oleh 'superadmin'
+    Route::delete('/message/{id}', [MessageController::class, 'destroy']);
 });
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

@@ -8,7 +8,7 @@
             <thead>
                 <tr class="text-center">
                     <th>Nama</th>
-                    <th>Badge No</th>
+                    <th>Email</th>
                     <th>Role</th>
                     <th>Permission</th>
                 </tr>
