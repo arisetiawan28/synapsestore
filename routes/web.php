@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('invoice', InvoiceController::class);
     Route::resource('invoice_barang', InvoiceBarangController::class);
     Route::resource('keranjang', KeranjangController::class);
+    Route::get('/barang/{id}/add_review', [BarangController::class, 'add_review']);
+    Route::post('/barang/{id}/store_review', [BarangController::class, 'store_review']);
 });
 
 //hanya bisa diakses oleh user dengan level superadmin atau pedagang
