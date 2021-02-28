@@ -32,4 +32,10 @@ class Keranjang extends Model
     {
         return $this->hasOne(User::class, 'id', 'created_by');
     }
+
+    //relasi untuk ke tabel User melalui field id_customer
+    public function customer()
+    {
+        return $this->hasOne(User::class, 'id', 'customer_id');
+    }
 }

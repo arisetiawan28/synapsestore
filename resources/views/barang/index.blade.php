@@ -5,6 +5,7 @@ Daftar Barang
 @endsection
 
 @section('content')
+<div id="app_vue">
     <div class="col-sm-12">  
         <a href="{{ url('barang/create') }}"><button class="btn btn-success">Tambah</button></a>
     </div>
@@ -32,7 +33,10 @@ Daftar Barang
             @foreach($datas as $value)
                 <tr>
                     <td>{{ $value->kode_barang }}</td>
-                    <td>{{ $value->nama_barang }}</td>
+                    <!-- <td>{{ $value->nama_barang }}</td> -->
+                    <td>
+                        <a href="{{ url('barang/'.$value->id) }}">{{ $value->nama_barang }}</a>
+                    </td>
                     <td>{{ $value->harga_barang }}</td>
                     <td>{{ $value->jumlah_barang }}</td>
                     <td>{{ $value->createdBy->name }}</td>
@@ -55,4 +59,29 @@ Daftar Barang
             -->
         {{ $datas->links() }} 
     </div>
+</div>
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script>
+       var vm = new Vue({  
+           el: "#app_vue",
+           data:{
+                //digunakan untuk menyimpan id_barang yang dipilih oleh pengguna
+                id_barang_saat_ini : 0,
+            }, 
+            methods: {
+                setIdBarang: function(event){
+                    var self = this;
+                    if(event){
+                        let id_barang = event.currentTarget.getAttribute('data-id');
+                        // alert(id_barang);
+                        self.id_barang_saat_ini = id_barang;
+                        $('#form_keranjang').modal('show');
+                    }
+                },
+            }
+        });
+    </script>
 @endsection
